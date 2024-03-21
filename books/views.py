@@ -1,20 +1,14 @@
-import json
 from django.shortcuts import render
+from books.models import Book
 
-
-books_data = open('books/books.json').read()
-data = json.loads(books_data)
 
 # Create your views here.
 def index(request):
-    context = {'data': data}
+    db_data = Book.objects.all()
+    context = {'data': db_data}
     return render(request, 'books/index.html', context)
 
 def book(request, id):
-    single_book = list()
-    for book in data:
-        if book['id'] == id:
-            single_book = book
-    
+    single_book = Book.objects.get(pk=id)
     context = {'book': single_book}
     return render(request, 'books/book.html', context)
