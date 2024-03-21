@@ -7,18 +7,20 @@
     <title>Django Course</title>
 </head>
 <body>
-    <h1 class='text-center text-4xl'>Programming Books</h1>
-    <div class='grid grid-cols-4 gap-4 mt-10'>
-        {% for book in data %}
-            
-                <a href='/book/1' class='justify-self-center text-center my-4' target='_blank'>
-                    <div class='flex justify-center'>
-                        <img src={{ book.thumbnailUrl }} width='200'>
-                    </div>
-                    <h3 class='text-lg text-gray-700'>{{ book.title }}</h3>
-                </a>
-            
-        {% endfor %}
-    </div>
+    <section class='py-10'>
+        <h1 class='text-center text-4xl'>Programming Books</h1>
+        <div class='grid grid-cols-4 gap-4 mt-10'>
+            {% for book in data %}
+                
+                    <a href='{% url "book.url" book.id %}' class='justify-self-center text-center my-4' target='_blank'>
+                        <div class='flex justify-center'>
+                            <img src={{ book.thumbnailUrl }} width='200'>
+                        </div>
+                        <h3 class='text-lg text-gray-700'>{{ book.title }}</h3>
+                    </a>
+                
+            {% endfor %}
+        </div>
+    </section>
 </body>
 </html>
